@@ -1,0 +1,105 @@
+import java.util.Scanner;
+
+class BasicCustomer {
+    protected String name;
+    protected String city;
+    protected int age;
+    protected String gender;
+    protected int totalBillAmount;
+
+    public BasicCustomer(String name, String city, int age, String gender, int totalBillAmount) {
+        this.name = name;
+        this.city = city;
+        this.age = age;
+        this.gender = gender;
+        this.totalBillAmount = totalBillAmount;
+    }
+
+    public int calculateDiscount() {
+        int cashback = 0;
+        if (totalBillAmount >= 1 && totalBillAmount <= 4999) {
+            cashback = 100;
+        } else if (totalBillAmount >= 5000 && totalBillAmount <= 7499) {
+            cashback = 250;
+        } else if (totalBillAmount >= 7500 && totalBillAmount <= 9999) {
+            cashback = 500;
+        } else if (totalBillAmount >= 10000 && totalBillAmount <= 19999) {
+            cashback = 750;
+        } else if (totalBillAmount >= 20000 && totalBillAmount <= 29999) {
+            cashback = 1000;
+        } else if (totalBillAmount >= 30000) {
+            cashback = 1500;
+        }
+        return cashback;
+    }
+
+    public void display() {
+        System.out.println(name);
+        System.out.println(city);
+        System.out.println(age);
+        System.out.println(gender);
+        System.out.println(totalBillAmount);
+        System.out.println(calculateDiscount());
+    }
+}
+
+class PremiumCustomer extends BasicCustomer {
+    private int subscriptionFee;
+
+    public PremiumCustomer(String name, String city, int age, String gender, int totalBillAmount, int subscriptionFee) {
+        super(name, city, age, gender, totalBillAmount);
+        this.subscriptionFee = subscriptionFee;
+    }
+
+    @Override
+    public int calculateDiscount() {
+        int cashback = 0;
+        if (totalBillAmount >= 1 && totalBillAmount <= 4999) {
+            cashback = 200;
+        } else if (totalBillAmount >= 5000 && totalBillAmount <= 7499) {
+            cashback = 400;
+        } else if (totalBillAmount >= 7500 && totalBillAmount <= 9999) {
+            cashback = 700;
+        } else if (totalBillAmount >= 10000 && totalBillAmount <= 19999) {
+            cashback = 1000;
+        } else if (totalBillAmount >= 20000 && totalBillAmount <= 29999) {
+            cashback = 1500;
+        } else if (totalBillAmount >= 30000) {
+            cashback = 2000;
+        }
+        return cashback;
+    }
+
+    @Override
+    public void display() {
+        System.out.println(name);
+        System.out.println(city);
+        System.out.println(age);
+        System.out.println(gender);
+        System.out.println(totalBillAmount);
+        System.out.println(subscriptionFee);
+        System.out.println(calculateDiscount());
+    }
+}
+
+public class ShoppingPortal {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String name = sc.nextLine();
+        String city = sc.nextLine();
+        int age = Integer.parseInt(sc.nextLine());
+        String gender = sc.nextLine();
+        int totalBillAmount = Integer.parseInt(sc.nextLine());
+        int customerType = Integer.parseInt(sc.nextLine());
+
+        if (customerType == 0) {
+            BasicCustomer basicCustomer = new BasicCustomer(name, city, age, gender, totalBillAmount);
+            basicCustomer.display();
+        } else {
+            int subscriptionFee = Integer.parseInt(sc.nextLine());
+            PremiumCustomer premiumCustomer = new PremiumCustomer(name, city, age, gender, totalBillAmount, subscriptionFee);
+            premiumCustomer.display();
+        }
+        sc.close();
+    }
+}
