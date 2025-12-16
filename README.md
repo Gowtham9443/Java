@@ -111,11 +111,3 @@ Small application-style programs.
     javac YourProgramName.java
     java YourProgramName
     ```
-
-## 🤝 Contribution
-
-Feel free to open issues for any errors or suggestions, and submit pull requests for alternative solutions or missing concepts!
-
----
-
-**Made with ❤️ and Java.**
